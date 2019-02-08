@@ -1,5 +1,15 @@
 # Codebook
 
+## Source Data
+
+The source data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+## Transformations
+
+No transformations of values were done from what already existed in the source data however, the following was done to create the tidy data set:
+1. Only the mean and std (standard deviation) measurements were included
+2. Fields for the 'subject' and 'activity' was added to the measurement table (see below for details)
+
 ## Units 
 To be honest, the units confused the heck out of me... but I tried, I really did.  The the source data README.md it indicates the raw measurements were in 'standard gravity units' for the acceleration measurements, and 'radians/sec' for the gyroscopic measurements.  However, sampled the values their are all between -1 and 1, so they have been normalized.  So my best effort at satisfying the requirement to identify the units is to provide the verbatum description of measurements from the source.  
 
@@ -20,7 +30,8 @@ The table below has one row for each field in the tidy data set, and describes t
 
 There are two additional fields in the data set not included in the table, they are:
 * **subject** - a numerical ID (values 1 - 30) identifying the subject (person) the measurement was for.  Note this was not explicitly required by in assignment.
-* **activity** - the activity the subject was observed doing when the measurement was taken
+* **activity** - the activity (*WALKING*, *WALKING_UPSTAIRS*, *WALKING_DOWNSTAIRS*, *SITTING*, *STANDING*, or *LAYING*)
+) the subject was observed doing when the measurement was taken
 
 
 | Field Name            | Domain     | Mean | Axis | Description

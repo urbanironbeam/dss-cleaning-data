@@ -1,13 +1,18 @@
 # Codebook
 
 ## Source Data
+All data is derived from this source:  
 
-The source data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Although it is sometimes recommended to keep the source data, I have not because it is bad practice to include large binary files in git repos. Instead I have include the download/extract portion of the scripts will verify the MD5 checksum of the zip file to ensure it the same as what was used to produce the resulting data sets included in this repo.  
+
+Checksum: `d29710c9530a31f303801b6bc34bd895`
 
 ## Transformations
 
 No transformations of values were done from what already existed in the source data however, the following was done to create the tidy data set:
-1. Only the mean and std (standard deviation) measurements were included
+1. Only the mean and std (standard deviation) values were included in the measurements
 2. Fields for the 'subject' and 'activity' were added to the measurement table (see below for details)
 ..* in the source data the 'activity' value used numerical ids (1-6) in the tidy data the label names of these activities were used instead
 3. The field names were modified: brackes removed and hyphens changed to underscores.
@@ -34,7 +39,11 @@ The table below has one row for each field in the tidy data set, and describes t
 There are two additional fields in the data set not included in the table, they are:
 * **subject** - a numerical ID (values 1 - 30) identifying the subject (person) the measurement was for.  Note this was not explicitly required by in assignment.
 * **activity** - the activity (*WALKING*, *WALKING_UPSTAIRS*, *WALKING_DOWNSTAIRS*, *SITTING*, *STANDING*, or *LAYING*)
-) the subject was observed doing when the measurement was taken
+) the subject was observed doing when the measurement was taken.
+
+### data-set-2.txt
+
+The description of the field details about applies to the [first data set](data-set-1.txt).  However, the fields below have a different meaning for the [second data set](data-set-2.csv).  In the second data set, these values are all averages (mean) for the given field when they are grouped by *subject* and *activity*.  So in the second data set the field name are all suffixed with "_avg".
 
 
 | Field Name            | Domain     | Mean | Axis | Description

@@ -6,7 +6,6 @@ Codebook
 | subject               | NA         | NA   | NA   | 
 | activity              | NA         | NA   | NA   | 
 | tBodyAcc_mean_X       | time       | mean | X    | 
-| tBodyAcc_mean_X       | time       | mean | X    | 
 | tBodyAcc_mean_Y       | time       | mean | Y    | 
 | tBodyAcc_mean_Z       | time       | mean | Z    | 
 | tBodyAcc_std_X        | time       | std  | X    | 

@@ -11,16 +11,16 @@ To be honest, the units confused the heck out of me... but I tried, I really did
 
 ## Field Details
 The table below has one row for each field in the tidy data set, and describes the mean of that field.  The meaning of the columns below as as follows:
-* *Field Name* - the name of field in the tidy data set.
-* *Domain* - the domain type of the measurement either *time* or  *frequency*, see the [Unit](#Units) section above.
-* *Mean* - either *mean* indicating the value is an average (specifically mean), or *std* to indicate it is a measure of standard deviation
-* *Axis* - most fields are a measure for a particular directional axis, values *X*, *Y*, and *Z* indicate which directional azis, *NA* indicates it is not a directional measurement.
-* *Description* - is description of what is measured by this field.
+* **Field Name** - the name of field in the tidy data set.
+* **Domain** - the domain type of the measurement either *time* or  *frequency*, see the [Unit](#Units) section above.
+* **Mean** - either *mean* indicating the value is an average (specifically mean), or *std* to indicate it is a measure of standard deviation
+* **Axis** - most fields are a measure for a particular directional axis, values *X*, *Y*, and *Z* indicate which directional azis, *NA* indicates it is not a directional measurement.
+* **Description** - is description of what is measured by this field.
 ** Note - blank lines indicate the description is the same as next non-blank description above (done to make it clearer how the measurements are grouped together).  
 
 There are two additional fields in the data set not included in the table, they are:
-* *subject* - a numerical ID (values 1 - 30) identifying the subject (person) the measurement was for.  Note this was not explicitly required by in assignment.
-* *activity* - the activity the subject was observed doing when the measurement was taken
+* **subject** - a numerical ID (values 1 - 30) identifying the subject (person) the measurement was for.  Note this was not explicitly required by in assignment.
+* **activity** - the activity the subject was observed doing when the measurement was taken
 
 
 | Field Name            | Domain     | Mean | Axis | Description

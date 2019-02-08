@@ -8,7 +8,10 @@ The source data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2F
 
 No transformations of values were done from what already existed in the source data however, the following was done to create the tidy data set:
 1. Only the mean and std (standard deviation) measurements were included
-2. Fields for the 'subject' and 'activity' was added to the measurement table (see below for details)
+2. Fields for the 'subject' and 'activity' were added to the measurement table (see below for details)
+..* in the source data the 'activity' value used numerical ids (1-6) in the tidy data the label names of these activities were used instead
+3. The field names were modified: brackes removed and hyphens changed to underscores.
+..* additionally it appear there was a typo in the source data field names in a few cases so occurences "fBodyBody" were changed to "fBody"
 
 ## Units 
 To be honest, the units confused the heck out of me... but I tried, I really did.  The the source data README.md it indicates the raw measurements were in 'standard gravity units' for the acceleration measurements, and 'radians/sec' for the gyroscopic measurements.  However, sampled the values their are all between -1 and 1, so they have been normalized.  So my best effort at satisfying the requirement to identify the units is to provide the verbatum description of measurements from the source.  

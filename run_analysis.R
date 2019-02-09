@@ -219,8 +219,8 @@ main <- function() {
     setwd(initial_working_dir)
     
     # Output the data sets as CSVs
-    write.csv(data_set_1,"data_set_1.csv", row.names=FALSE)
-    write.csv(data_set_2,"data_set_2.csv", row.names=FALSE)
+    write.csv(data_set_1, "data_set_1.csv", row.names=FALSE)
+    write.csv(data_set_2, "data_set_2.csv", row.names=FALSE)
 }
 
 # Execute the main function but reset the working dir if there is an exception
@@ -229,5 +229,5 @@ tryCatch( {
     main() 
 },
 finally = { 
-    setwd(wd) 
+    setwd(initial_working_dir) 
 })

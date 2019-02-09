@@ -1,6 +1,6 @@
 # Getting and Cleaning Data Course Project
 
-This repository is for the Coursera [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning) course project.  
+This repository is for the Coursera [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning) course project.  Big thanks to the University of California Irvine for provide the original data (please see [here](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
 ## Files 
 
@@ -17,7 +17,7 @@ Note - not includes is a the source data used to generate the data sets, since i
 Simply execute the [run_analysis.R](run_analysis.R) script.  
 
 In your current working directory it will:
-1. Download the source data to a file called `source-data.zip`
+1. Download the source data to a file called `source-data.zip` (if not already in your working directory)
 2. Extract the source data into a directory called `source-data`
 3. Generate the first data set and serialize it as a comma seperated file: `data_set_1.csv'
 3. Generate the second data set and serialize it as a comma seperated file: `data_set_2.csv'

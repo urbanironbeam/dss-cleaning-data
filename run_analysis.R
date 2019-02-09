@@ -23,6 +23,7 @@ download_and_extract_data_and_set_wd <- function() {
     source_data_url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
     source_zip_file <- "source-data.zip"
     extracted_data_dir <- "UCI HAR Dataset"
+    renamed_data_dir <- "source-data"
     expected_md5_checksum_of_zip <- "d29710c9530a31f303801b6bc34bd895"
     working_dir <- getwd()
     
@@ -36,7 +37,9 @@ download_and_extract_data_and_set_wd <- function() {
         stopifnot( !dir.exists(extracted_data_dir))
         
         # Unzip the data now
-        unzip(source_zip_file,exdir=working_dir)
+        unzip(source_zip_file)
+        
+        file.rename(extracted_data_dir,renamed_data_dir)
     }
     
     # If the source file doesn't have the expected checksum, it means it has 
@@ -48,8 +51,7 @@ download_and_extract_data_and_set_wd <- function() {
     }
     
     # update working dir to be in the extacted data folder
-    working_dir <- file.path(working_dir,extracted_data_dir)
-    setwd(working_dir)
+    setwd(file.path(working_dir,renamed_data_dir))
 }
 
 # Returns a data frame with 3 variables...
@@ -117,7 +119,7 @@ get_file_path <- function(data_set,data_type) {
 # activity_labels - data frame mapping numerical activity ID, to the activity name
 # field_data      - data frame with details about the fields in the source data
 #
-get_tidy_data_set <- function(data_set,activity_labels,field_data) {
+get_tidy_data_set <- function(data_set, activity_labels, field_data) {
     
     # Get the subject ID for each measurement
     subject_data <- read.table(get_file_path(data_set,"subject"), col.names = "id") 
@@ -165,13 +167,10 @@ get_code_book_field_data <- function(field_data) {
 #
 # Gets a data frame combining the tidied training and test data sets
 # 
-get_combined_data_set <- function() {
-    
-    download_and_extract_data_and_set_wd()
-    
-    field_data <- get_field_data()
-    
-    activity_labels <- read.table("activity_labels.txt", col.names = c("id","activity")) 
+# activity_labels - data frame mapping numerical activity ID, to the activity name
+# field_data      - data frame with details about the fields in the source data
+#
+get_combined_data_set <- function(activity_labels, field_data) {
     
     # Get the individual (tidied) data-sets
     train_data_set <- get_tidy_data_set("train", activity_labels, field_data)
@@ -183,11 +182,52 @@ get_combined_data_set <- function() {
     return(combined_data_set)
 }
 
-data_set_1 <- get_combined_data_set()
-data_set_2 <- data_set_1 %>% 
-                group_by(subject,activity) %>% 
-                summarise_all(funs(mean))
+# 
+# Get the second data set which shows the average (mean) for each field in 
+# the first data set, when grouped by subject and activity.  Additionally
+# add the suffix "_avg" to field names to indicate that it is an averged value.
+# 
+get_data_set_averages <- function(data_set_1) {
+    
+    # The second data set is just the average (mean) for each group of
+    # subject and activity
+    data_set_2 <- data_set_1 %>% 
+        group_by(subject,activity) %>% 
+        summarise_all(funs(mean))    
+    
+    # Rename fields to append "_avg" 
+    d1names <- colnames(data_set_1)
+    colnames(data_set_2) <- c(d1names[1:2],paste0(d1names[3:length(d1names)],"_avg"))
+    return(data_set_2)
+}
 
-write.csv(data_set_1,"data_set_1.csv", row.names=FALSE)
-write.csv(data_set_2,"data_set_2.csv", row.names=FALSE)
+# 
+# Main function to download/extract source data and create tidy data sets.  Will
+# operate in current working directory.
+#
+main <- function() {
+    download_and_extract_data_and_set_wd()
+    
+    field_data <- get_field_data()
+    
+    activity_labels <- read.table("activity_labels.txt", col.names = c("id","activity")) 
+    
+    data_set_1 <- get_combined_data_set(activity_labels, field_data)
+    data_set_2 <- get_data_set_averages(data_set_1)
+    
+    # Restore the initial working dir before outputting the files
+    setwd(initial_working_dir)
+    
+    # Output the data sets as CSVs
+    write.csv(data_set_1,"data_set_1.csv", row.names=FALSE)
+    write.csv(data_set_2,"data_set_2.csv", row.names=FALSE)
+}
 
+# Execute the main function but reset the working dir if there is an exception
+tryCatch( { 
+    initial_working_dir <-getwd()
+    main() 
+},
+finally = { 
+    setwd(wd) 
+})

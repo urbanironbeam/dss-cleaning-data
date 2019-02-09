@@ -41,9 +41,9 @@ There are two additional fields in the data set not included in the table, they 
 * **activity** - the activity (*WALKING*, *WALKING_UPSTAIRS*, *WALKING_DOWNSTAIRS*, *SITTING*, *STANDING*, or *LAYING*)
 ) the subject was observed doing when the measurement was taken.
 
-### data-set-2.txt
+### data-set-2.csv
 
-The description of the field details about applies to the [first data set](data-set-1.txt).  However, the fields below have a different meaning for the [second data set](data-set-2.csv).  In the second data set, these values are all averages (mean) for the given field when they are grouped by *subject* and *activity*.  So in the second data set the field name are all suffixed with "_avg".
+The description of the field details about applies to the [first data set](data-set-1.csv).  However, the fields below have a different meaning for the [second data set](data-set-2.csv).  In the second data set, these values are all averages (mean) for the given field when they are grouped by *subject* and *activity*.  So in the second data set the field name are all suffixed with "_avg".
 
 
 | Field Name            | Domain     | Mean | Axis | Description

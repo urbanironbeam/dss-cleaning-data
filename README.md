@@ -10,7 +10,7 @@ This repository is for the Coursera [Getting and Cleaning Data](https://www.cour
 4. [data_set_1.csv](data_set_1.csv) - the first data set (see [CodeBook.md](CodeBook.md) for details), combining the test and and training data sets from the source data.
 5. [data_set_2.csv](data_set_2.csv) - the second data set (see [CodeBook.md](CodeBook.md) for details), providing averages (means) for each of the variables (grouped by subject and activity) in the first data set.
 
-Note - not includes is a the source data used to generate the data sets, since it would be a bad practice to include a large binary file in a git repo.  However, the scripts include a verification of the checksum of the source data to verify the data is being reproduced consistently.
+Note - this repo does not include the source data since it would be a bad practice to include a large binary file in a git repo, particularly since the source data is widely available.  However, the R script includes a verification of the checksum of the source data to verify the data are being reproduced consistently.
 
 ## Generating the Data Sets
 
